@@ -1,95 +1,46 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import React, { useState, useEffect } from "react";
 
-export default function Home() {
+const App = () => {
+  const fetchUserIds = async () => {
+    return ["john.smith", "sara.lee", "jack.ma"];
+  };
+
+  const checkStatus = async (userId: string) => {
+    return Math.random() > 0.8
+      ? { status: "offline", id: userId }
+      : { status: "online", id: userId };
+  };
+
+  const sendEmail = async (userId: string) => {
+    // return if it was sucessfull or not
+    return Math.random() > 0.1 ? true : false;
+  };
+
+  /*
+    Question 1: 
+    Find all online users and send them emails. Render the users for which the emails were successfully sent
+
+    Step 1: Load users
+    Step 2: Check users online
+    Step 3: Send email for whom are online
+    Step 4: Render those which the email was successfully sent
+  
+  */
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
+    <div className="App">
+      <div className="App-header">
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          All online users that introductions were sucessfully sent
+          <ul>
+            <li>Student 1</li>
+            <li>Student 2</li>
+            <li>Student 3</li>
+          </ul>
         </div>
       </div>
+    </div>
+  );
+};
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+export default App;
