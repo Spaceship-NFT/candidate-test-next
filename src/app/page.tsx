@@ -16,6 +16,7 @@ const App = () => {
     return Math.random() > 0.1 ? true : false;
   };
 
+  // So pra gerar mudança
   /*
     Question 1: 
     Find all online users and send them emails. Render the users for which the emails were successfully sent
