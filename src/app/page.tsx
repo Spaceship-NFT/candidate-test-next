@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-
-const App = () => {
+const App = async () => {
   const fetchUserIds = async () => {
     return ["john.smith", "sara.lee", "jack.ma"];
   };
@@ -26,6 +24,22 @@ const App = () => {
     Passo 4: Renderizar aqueles para os quais o e-mail foi enviado com sucesso
   
   */
+  
+  const usersId = await fetchUserIds();
+
+  const onlineUsersPromise = await Promise.all(usersId.map(async (id)  => {
+    const user = await checkStatus(id);
+    if(user.status === "online") return id
+  }))
+
+  
+  const usersEmailSended = await Promise.all(onlineUsersPromise.map(async (id) => {
+    if (!id) return;
+    const isEmailSended = await sendEmail(id);
+    if(isEmailSended) return id;
+  }))
+
+  const userFiltered = usersEmailSended.filter((val) => !!val)
 
   return (
     <div className="App">
@@ -33,9 +47,9 @@ const App = () => {
         <div>
           All online users that introductions were sucessfully sent
           <ul>
-            <li>Student 1</li>
-            <li>Student 2</li>
-            <li>Student 3</li>
+            {
+              userFiltered.map(userId => <li key={userId}>{ userId }</li>)
+            }
           </ul>
         </div>
       </div>
