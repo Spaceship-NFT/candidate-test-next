@@ -18,12 +18,12 @@ const App = () => {
 
   /*
     Question 1: 
-    Find all online users and send them emails. Render the users for which the emails were successfully sent
+    Encontre todos os usuários online e envie e-mails para eles. Renderize os usuários para os quais os e-mails foram enviados com sucesso.
 
-    Step 1: Load users
-    Step 2: Check users online
-    Step 3: Send email for whom are online
-    Step 4: Render those which the email was successfully sent
+    Passo 1: Carregar usuários
+    Passo 2: Verificar usuários online
+    Passo 3: Enviar e-mail para quem está online
+    Passo 4: Renderizar aqueles para os quais o e-mail foi enviado com sucesso
   
   */
 
